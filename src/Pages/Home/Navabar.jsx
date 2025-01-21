@@ -1,7 +1,12 @@
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/icons8-inspiration-64.png"
 import notification from "../../assets/icons8-notification-40.png"
+import { useContext } from "react";
+import { AuthContext } from "../../Authentication/AuthProvider";
 const Navabar = () => {
+    const { user } = useContext(AuthContext);
+    console.log(user?.photoURL, user?.displayName);
+
     return (
         <div className="md:w-11/12 md:mx-auto md:pt-4 pt-2">
             <div className="navbar bg-base-100">
@@ -43,9 +48,17 @@ const Navabar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end pr-4 md:pr-0">
-                    <ul>
-                        <NavLink to="/joinus"> <li className="hover:font-bold">Join Us</li></NavLink>
-                    </ul>
+                    {
+                        user ?
+                            <button>
+                                <p>{user.displayName}</p>
+                                <img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" />
+                            </button>
+                         :
+                            <ul>
+                                <NavLink to="/joinus"> <li className="hover:font-bold">Join Us</li></NavLink>
+                            </ul>
+                    }
                 </div>
             </div>
         </div>

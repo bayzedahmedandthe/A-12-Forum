@@ -1,12 +1,38 @@
 import { useForm } from "react-hook-form";
 import logo from "../assets/icons8-inspiration-64.png"
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../Authentication/AuthProvider";
+import { toast } from "react-toastify";
 
 
 const Register = () => {
+    const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
         console.log(data);
+        if (data.password.length < 6) {
+            return toast.error("password must be 6 character")
+        }
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+        if (!passwordRegex.test(data.password)) {
+            return toast.error("password must be one uppercase one lowercase")
+        }
+        createUser(data.email, data.password)
+            .then(result => {
+                console.log(result);
+                toast.success("Registation successful");
+                updateUserProfile(data.name, data.photoURL)
+                .then(() => {
+                    console.log("user profile updated");
+                    setUser(data.name, data.photoURL)
+                })
+                .catch(error => console.log(error))
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error("auth/email-already-in-use")
+            })
     }
     return (
         <div className='py-12 lg:w-4/12 mx-auto md:w-6/12 w-9/12'>
