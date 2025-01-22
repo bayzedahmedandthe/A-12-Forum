@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import logo from "../assets/icons8-inspiration-64.png"
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthProvider";
 import { toast } from "react-toastify";
@@ -9,10 +9,11 @@ import { toast } from "react-toastify";
 const Register = () => {
     const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const onSubmit = data => {
         console.log(data);
         if (data.password.length < 6) {
-            return toast.error("password must be 6 character")
+            return toast.error("password must be 6 character")                                                    
         }
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
         if (!passwordRegex.test(data.password)) {
@@ -21,11 +22,13 @@ const Register = () => {
         createUser(data.email, data.password)
             .then(result => {
                 console.log(result);
+                const newUser = result.user
                 toast.success("Registation successful");
-                updateUserProfile(data.name, data.photoURL)
+                updateUserProfile(data.name, data.photo)
                 .then(() => {
                     console.log("user profile updated");
-                    setUser(data.name, data.photoURL)
+                    setUser({...newUser, displayName:data.name, photoURL:data.photo })
+                    navigate("/")
                 })
                 .catch(error => console.log(error))
             })

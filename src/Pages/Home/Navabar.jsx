@@ -1,11 +1,27 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/icons8-inspiration-64.png"
 import notification from "../../assets/icons8-notification-40.png"
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider";
+import 'animate.css';
+import { toast } from "react-toastify";
 const Navabar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logOutUser } = useContext(AuthContext);
+    const [open, setOpen] = useState(false);
     console.log(user?.photoURL, user?.displayName);
+    const navigate = useNavigate();
+    const handleLogOut = () => {
+        logOutUser()
+            .then(result => {
+                console.log(result);
+                navigate("")
+                toast.success("Log Out successful")
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     return (
         <div className="md:w-11/12 md:mx-auto md:pt-4 pt-2">
@@ -50,11 +66,15 @@ const Navabar = () => {
                 <div className="navbar-end pr-4 md:pr-0">
                     {
                         user ?
-                            <button>
-                                <p>{user.displayName}</p>
+                            <button onClick={() => setOpen(!open)}>
                                 <img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" />
+                                <div className={`animate__animated animate__zoomIn flex flex-col shadow-xl duration-1000 text-black absolute top-24 right-2 ${open ? "" : "hidden"}`}>
+                                    <p className="px-8 py-3 text-lg font-semibold">{user && user?.displayName}</p>
+                                    <Link to="/dashboard/myProfile"><p className="px-8 hover:font-semibold">Dashboard</p></Link>
+                                    <button onClick={handleLogOut} className="p-1 hover:font-semibold  my-2">Log Out</button>
+                                </div>
                             </button>
-                         :
+                            :
                             <ul>
                                 <NavLink to="/joinus"> <li className="hover:font-bold">Join Us</li></NavLink>
                             </ul>

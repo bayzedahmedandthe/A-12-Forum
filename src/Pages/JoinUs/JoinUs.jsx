@@ -1,20 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import logo from "../../assets/icons8-inspiration-64.png"
 import { FcGoogle } from 'react-icons/fc';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Authentication/AuthProvider';
+import { toast } from 'react-toastify';
 const JoinUs = () => {
+    const { loginWithGoogle, loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
+    const navigate = useNavigate();
     const onSubmit = data => {
-        console.log(data);
+        // console.log(data);
+        loginUser(data.email, data.password)
+        .then(result => {
+            console.log(result);
+            toast.success("Login successful")
+        })
+        .catch(error => {
+            console.log(error);
+            toast.error("Invalid Credentials")
+        })
+    }
+    const handleLoginWithGoogle = () => {
+        loginWithGoogle();
     }
     return (
         <div>
             <div className='py-12 lg:w-4/12 mx-auto md:w-6/12 w-9/12'>
                 <div className='py-4'>
                     <img className='w-12 h-12 my-4' src={logo} alt="" />
-                <h3 className='text-2xl font-semibold py-2'>Enter Your Credentials</h3>
-                <p className='text-gray-600 pb-6'> Please enter your email and password to continue.</p>
+                    <h3 className='text-2xl font-semibold py-2'>Enter Your Credentials</h3>
+                    <p className='text-gray-600 pb-6'> Please enter your email and password to continue.</p>
                 </div>
                 <form onSubmit={handleSubmit(onSubmit)}
                 >
@@ -36,9 +52,9 @@ const JoinUs = () => {
                         <button className='btn btn-primary w-full text-xl'>Log In</button>
                     </div>
                     <div className="divider my-2">Or, Login with</div>
-                    <button className='flex items-center gap-4 justify-center text-center border-2 py-3 rounded-lg mx-auto w-full my-6 text-xl'> <FcGoogle />Login with google</button>
 
                 </form>
+                <button onClick={handleLoginWithGoogle} className='flex items-center gap-4 justify-center text-center border-2 py-3 rounded-lg mx-auto w-full my-6 text-xl'> <FcGoogle />Login with google</button>
                 <p className='text-lg text-center'>Don't have an account? <Link to="/register" className='border-b border-indigo-500 text-indigo-500'>Register here</Link></p>
             </div>
         </div>

@@ -8,6 +8,11 @@ import Notification from "../Pages/Notifications/Notification";
 import JoinUs from "../Pages/JoinUs/JoinUs";
 import Home from "../Pages/Home/Home";
 import Register from "../Pages/Register";
+import Dashboard from "../Pages/Dashboard";
+import MyProfile from "../Components/MyProfile";
+import MyPosts from "../Components/MyPosts";
+import AddPost from "../Components/AddPost";
+import PrivetRoute from "./PrivetRoute";
 
 
 const router = createBrowserRouter([
@@ -17,7 +22,7 @@ const router = createBrowserRouter([
     errorElement: <Error></Error>,
     children: [
       {
-        path: "/", 
+        path: "/",
         element: <Home></Home>
       },
       {
@@ -38,6 +43,24 @@ const router = createBrowserRouter([
       }
     ]
   },
+  {
+    path: "dashboard",
+    element: <PrivetRoute><Dashboard></Dashboard></PrivetRoute>,
+    children: [
+      {
+        path: "myProfile",
+        element: <MyProfile></MyProfile>
+      },
+      {
+        path: "myPosts",
+        element: <MyPosts></MyPosts>
+      },
+      {
+        path: "addPost",
+        element: <AddPost></AddPost>
+      }
+    ]
+  }
 ]);
 
 export default router;

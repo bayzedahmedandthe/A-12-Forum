@@ -24,7 +24,9 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
     const updateUserProfile =  (name, photo) => {
+        console.log({name, photo});
         setLoading(true);
+        
         return updateProfile(auth.currentUser, {
             displayName: name, photoURL: photo
         });
@@ -45,6 +47,7 @@ const AuthProvider = ({ children }) => {
         logOutUser,
         updateUserProfile,
         user,
+        setUser,
         loading
     }
     return (
