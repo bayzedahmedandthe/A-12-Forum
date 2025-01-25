@@ -4,16 +4,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthProvider";
 import { toast } from "react-toastify";
+import useAxiosPublic from "../Shared/useAxiosPublic";
 
 
 const Register = () => {
+    const axiosPublic = useAxiosPublic();
     const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const onSubmit = data => {
-        console.log(data);
         if (data.password.length < 6) {
-            return toast.error("password must be 6 character")                                                    
+            return toast.error("password must be 6 character")
         }
         const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
         if (!passwordRegex.test(data.password)) {
@@ -25,12 +26,20 @@ const Register = () => {
                 const newUser = result.user
                 toast.success("Registation successful");
                 updateUserProfile(data.name, data.photo)
-                .then(() => {
-                    console.log("user profile updated");
-                    setUser({...newUser, displayName:data.name, photoURL:data.photo })
-                    navigate("/")
-                })
-                .catch(error => console.log(error))
+                    .then(() => {
+                        setUser({ ...newUser, displayName: data.name, photoURL: data.photo })
+                        navigate("/")
+
+                        const userInfo = {
+                            email: result.user?.email,
+                            name: result.user?.displayName
+                        }
+                        axiosPublic.post("/users", userInfo)
+                            .then(res => {
+                                console.log("added user data in mongodb", res.data);
+                            })
+                    })
+                    .catch(error => console.log(error))
             })
             .catch(error => {
                 console.log(error);

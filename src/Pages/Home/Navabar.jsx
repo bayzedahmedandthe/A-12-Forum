@@ -8,12 +8,11 @@ import { toast } from "react-toastify";
 const Navabar = () => {
     const { user, logOutUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
-    console.log(user?.photoURL, user?.displayName);
     const navigate = useNavigate();
     const handleLogOut = () => {
         logOutUser()
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 navigate("")
                 toast.success("Log Out successful")
 

@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authentication/AuthProvider';
 import { toast } from 'react-toastify';
 const JoinUs = () => {
+
     const { loginWithGoogle, loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
@@ -14,7 +15,9 @@ const JoinUs = () => {
         loginUser(data.email, data.password)
         .then(result => {
             console.log(result);
-            toast.success("Login successful")
+            toast.success("Login successful");
+
+
         })
         .catch(error => {
             console.log(error);
