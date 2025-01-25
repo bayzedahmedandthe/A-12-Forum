@@ -9,12 +9,12 @@ import usePosts from "../Shared/usePosts";
 
 
 const MyPosts = () => {
-    const [refetch] = usePosts();
+    const [, refetch] = usePosts()
     const { user } = useAuth();
     const axiosPublic = useAxiosPublic();
     const [myPosts, setMyPosts] = useState([]);
     useEffect(() => {
-        axiosPublic.get(`/allPosts/${user?.email}`)
+        axiosPublic.get(`/allPosts-email/${user?.email}`)
             .then(res => {
                 setMyPosts(res.data)
             })

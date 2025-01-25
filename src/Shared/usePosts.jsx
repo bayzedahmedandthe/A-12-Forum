@@ -4,10 +4,10 @@ import useAxiosPublic from "./useAxiosPublic";
 
 const usePosts = () => {
     const axiosPublic = useAxiosPublic();
-    const {data: post =[], refetch} = useQuery({
-        queryKey: ["posts"],
+    const {refetch, data: post = []} = useQuery({
+        queryKey: ["post"],
         queryFn: async() => {
-            const res = axiosPublic.get("/allPosts")
+            const res = await axiosPublic.get("/allPosts")
             return res.data
         }
     })

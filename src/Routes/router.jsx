@@ -13,6 +13,7 @@ import MyProfile from "../Components/MyProfile";
 import MyPosts from "../Components/MyPosts";
 import AddPost from "../Components/AddPost";
 import PrivetRoute from "./PrivetRoute";
+import PostDetails from "../Pages/PostDetails";
 
 
 const router = createBrowserRouter([
@@ -40,6 +41,12 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register></Register>
+      },
+      {
+        path: "/postDetails/:id",
+        element: <PostDetails></PostDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/allPosts-details/${params.id}`)
+        
       }
     ]
   },
