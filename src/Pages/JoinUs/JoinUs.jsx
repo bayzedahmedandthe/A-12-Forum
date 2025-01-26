@@ -5,27 +5,41 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authentication/AuthProvider';
 import { toast } from 'react-toastify';
+import useAxiospublic from '../../Hooks/useAxiosPublic';
 const JoinUs = () => {
-
+    const axiosPublic = useAxiospublic();
     const { loginWithGoogle, loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
     const onSubmit = data => {
         // console.log(data);
         loginUser(data.email, data.password)
-        .then(result => {
-            console.log(result);
-            toast.success("Login successful");
+            .then(result => {
+                console.log(result);
+                toast.success("Login successful");
 
 
-        })
-        .catch(error => {
-            console.log(error);
-            toast.error("Invalid Credentials")
-        })
+            })
+            .catch(error => {
+                console.log(error);
+                toast.error("Invalid Credentials")
+            })
     }
     const handleLoginWithGoogle = () => {
-        loginWithGoogle();
+        loginWithGoogle()
+            .then(result => {
+                console.log(result.user);
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post("/users", userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                    })
+            })
+
+
     }
     return (
         <div>

@@ -1,12 +1,12 @@
-import { useContext } from "react";
+
 import { useForm } from "react-hook-form";
 import useAuth from "../Authentication/useAuth";
-import useAxiosPublic from "../Shared/useAxiosPublic";
 import moment from "moment";
+import useAxiospublic from "../Hooks/useAxiosPublic";
 
 
 const AddPost = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiospublic();
     const {user} = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
@@ -44,7 +44,7 @@ const AddPost = () => {
                 </label>
                 <label className="form-control w-full">
                     <span className="label-text py-2">Select a Tag*</span>
-                    <select defaultValue="default" {...register("tag", { required: true })} className="select select-bordered w-full">
+                    <select defaultValue="default" {...register("tag", { required: true })} required className="select select-bordered w-full">
                         <option disabled value="default">Tag</option>
                         <option>Character building</option>
                         <option>Normal education</option>

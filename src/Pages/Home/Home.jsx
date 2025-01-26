@@ -1,4 +1,5 @@
 import AllPosts from "../../Components/AllPosts";
+import AnnouncementSection from "../../Components/AnnouncementSection";
 import TagsSection from "../../Components/TagsSection";
 import Banner from "./Banner";
 
@@ -11,8 +12,7 @@ const Home = () => {
             {/* tags section */}
             <TagsSection></TagsSection>
             {/* announcement section */}
-
-
+            <AnnouncementSection></AnnouncementSection>
             {/* AllPosts section */}
             <AllPosts></AllPosts>
         </div>

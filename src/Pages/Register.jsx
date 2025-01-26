@@ -4,11 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthProvider";
 import { toast } from "react-toastify";
-import useAxiosPublic from "../Shared/useAxiosPublic";
+import useAxiospublic from "../Hooks/useAxiosPublic";
 
 
 const Register = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiospublic();
     const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();

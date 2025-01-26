@@ -6,6 +6,7 @@ import { AuthContext } from "../../Authentication/AuthProvider";
 import 'animate.css';
 import { toast } from "react-toastify";
 const Navabar = () => {
+    const isAdmin = true;
     const { user, logOutUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -69,7 +70,12 @@ const Navabar = () => {
                                 <img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" />
                                 <div className={`animate__animated animate__zoomIn flex flex-col shadow-xl duration-1000 text-black absolute top-24 right-2 ${open ? "" : "hidden"}`}>
                                     <p className="px-8 py-3 text-lg font-semibold">{user && user?.displayName}</p>
-                                    <Link to="/dashboard/myProfile"><p className="px-8 hover:font-semibold">Dashboard</p></Link>
+                                    {
+                                        isAdmin ?
+                                            <Link to="/dashboard/adminProfiles"><p className="px-8 hover:font-semibold">Dashboard</p></Link>
+                                            :
+                                            <Link to="/dashboard/myProfile"><p className="px-8 hover:font-semibold">Dashboard</p></Link>
+                                    }
                                     <button onClick={handleLogOut} className="p-1 hover:font-semibold  my-2">Log Out</button>
                                 </div>
                             </button>

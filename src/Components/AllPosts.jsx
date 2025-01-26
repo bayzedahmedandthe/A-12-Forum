@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import useAxiosPublic from "../Shared/useAxiosPublic";
 import { Link } from "react-router-dom";
+import useAxiospublic from "../Hooks/useAxiosPublic";
 
 
 const AllPosts = () => {
-    const axiosPublic = useAxiosPublic();
+    const axiosPublic = useAxiospublic();
     const [allPosts, setAllPosts] = useState([]);
     useEffect(() => {
         axiosPublic.get("/allPosts")

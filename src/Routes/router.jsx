@@ -14,6 +14,10 @@ import MyPosts from "../Components/MyPosts";
 import AddPost from "../Components/AddPost";
 import PrivetRoute from "./PrivetRoute";
 import PostDetails from "../Pages/PostDetails";
+import AdminProfiles from "../Components/AdminProfiles";
+import ManageUsers from "../Components/ManageUsers";
+import ReportedComments from "../Components/ReportedComments";
+import MakeAnnouncement from "../Components/MakeAnnouncement";
 
 
 const router = createBrowserRouter([
@@ -65,6 +69,23 @@ const router = createBrowserRouter([
       {
         path: "addPost",
         element: <AddPost></AddPost>
+      },
+      {
+        path: "adminProfiles",
+        element: <AdminProfiles></AdminProfiles>
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers></ManageUsers>,
+        loader: () => fetch("http://localhost:5000/users")
+      },
+      {
+        path: "reportedComments",
+        element: <ReportedComments></ReportedComments>
+      },
+      {
+        path: "makeAnnouncement",
+        element: <MakeAnnouncement></MakeAnnouncement>
       }
     ]
   }
