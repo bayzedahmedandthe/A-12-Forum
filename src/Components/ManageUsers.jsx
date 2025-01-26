@@ -1,20 +1,26 @@
 import { FiUsers } from "react-icons/fi";
 import { GrUserSettings } from "react-icons/gr";
-import { useLoaderData } from "react-router-dom";
 import usePosts from "../Hooks/usePosts";
-import useAxiospublic from "../Hooks/useAxiosPublic";
 import Swal from "sweetalert2";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 
 const ManageUsers = () => {
-    const axiosPublic = useAxiospublic();
-    const users = useLoaderData();
+    const axiosSecure = useAxiosSecure();
     const [, refetch] = usePosts();
-    // console.log(users);
+    const [users, setUsers] = useState([]);
+    useEffect(() => {
+        axiosSecure.get("/users")
+        .then(res => {
+            console.log(res.data);
+            setUsers(res.data)
+        })
+    }, [refetch]);
     const handleMakeAdmin = user => {
-        axiosPublic.patch(`/users/admin/${user._id}`)
+        axiosSecure.patch(`/users/admin/${user._id}`)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {

@@ -9,7 +9,7 @@ const MakeAnnouncement = () => {
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         // console.log(data);
-        axiosPublic.post("/announcement")
+        axiosPublic.post("/announcement", data)
         .then(res => {
             console.log(res.data);
             reset()
@@ -29,12 +29,12 @@ const MakeAnnouncement = () => {
                 </label>
                 <label className="form-control w-full ">
                     <span className="label-text py-2"> Title</span>
-                    <input {...register("postTitle", { required: true })} type="text" placeholder="Enter post title" required className="input input-bordered w-full" />
+                    <input {...register("Title", { required: true })} type="text" placeholder="Enter post title" required className="input input-bordered w-full" />
                 </label>
                 <label className="form-control w-full ">
                     <span className="label-text py-2"> Descriptioin</span>
                     <textarea
-                        {...register("postDescription", { required: true })}
+                        {...register("Description", { required: true })}
                         placeholder="Enter a description for the post"
                         className="textarea textarea-bordered textarea-lg w-full "></textarea>
                 </label>

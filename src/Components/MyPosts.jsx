@@ -4,17 +4,17 @@ import useAuth from "../Authentication/useAuth";
 import { MdOutlineInsertComment } from "react-icons/md";
 import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
-import useAxiospublic from "../Hooks/useAxiosPublic";
 import usePosts from "../Hooks/usePosts";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 const MyPosts = () => {
     const [, refetch] = usePosts()
     const { user } = useAuth();
-    const axiosPublic = useAxiospublic();
+    const axiosSecure = useAxiosSecure();
     const [myPosts, setMyPosts] = useState([]);
     useEffect(() => {
-        axiosPublic.get(`/allPosts-email/${user?.email}`)
+        axiosSecure.get(`/allPosts-email/${user?.email}`)
             .then(res => {
                 setMyPosts(res.data)
             })

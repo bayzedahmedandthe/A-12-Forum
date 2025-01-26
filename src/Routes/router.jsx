@@ -77,7 +77,6 @@ const router = createBrowserRouter([
       {
         path: "manageUsers",
         element: <ManageUsers></ManageUsers>,
-        loader: () => fetch("http://localhost:5000/users")
       },
       {
         path: "reportedComments",
