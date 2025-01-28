@@ -1,16 +1,15 @@
 import { FiUsers } from "react-icons/fi";
 import { GrUserSettings } from "react-icons/gr";
-import usePosts from "../Hooks/usePosts";
 import Swal from "sweetalert2";
 import { useEffect, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { useNavigate } from "react-router-dom";
 
 
 
 const ManageUsers = () => {
+    const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
-    const [, refetch] = usePosts();
     const [users, setUsers] = useState([]);
     useEffect(() => {
         axiosSecure.get("/users")
@@ -18,13 +17,13 @@ const ManageUsers = () => {
             console.log(res.data);
             setUsers(res.data)
         })
-    }, [refetch]);
+    }, []);
     const handleMakeAdmin = user => {
         axiosSecure.patch(`/users/admin/${user._id}`)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
-                    refetch()
+                    navigate("/dashboard/adminProfiles")
                     Swal.fire({
                         position: "center",
                         icon: "success",
@@ -35,11 +34,6 @@ const ManageUsers = () => {
                 }
             })
     }
-    useEffect(() => {
-        if(users.length > 0){
-            refetch()
-        }
-    }, [users, refetch]);
     return (
         <div>
             <div className="overflow-x-auto">

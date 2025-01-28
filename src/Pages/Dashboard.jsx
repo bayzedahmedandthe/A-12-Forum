@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
-import Navabar from "./Home/Navabar";
-import Footer from "./Home/Footer";
 import useAdmin from "../Hooks/useAdmin";
 
 

@@ -5,8 +5,12 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../../Authentication/AuthProvider";
 import 'animate.css';
 import { toast } from "react-toastify";
+import useAnnouncement from "../../Hooks/useAnnouncement";
+import useAdmin from "../../Hooks/useAdmin";
 const Navabar = () => {
-    const isAdmin = true;
+    const [isAdmin] = useAdmin();
+    const [announcement] = useAnnouncement();
+    // console.log(announcement);
     const { user, logOutUser } = useContext(AuthContext);
     const [open, setOpen] = useState(false);
     const navigate = useNavigate();
@@ -14,7 +18,7 @@ const Navabar = () => {
         logOutUser()
             .then(result => {
                 // console.log(result);
-                navigate("")
+                navigate("/")
                 toast.success("Log Out successful")
 
             })
@@ -49,6 +53,7 @@ const Navabar = () => {
                             <NavLink to="/membership"><li className="pr-6  hover:font-bold">Membership</li></NavLink>
                             <NavLink to="/notification"><img className="h-8 w-8" src={notification} alt="" /></NavLink>
                             <NavLink to="/joinus"> <li className=" hover:font-bold">Join Us</li></NavLink>
+                            <p className="bg-blue-600 px-2 rounded-lg text-white right-2">{announcement?.length}</p>
                         </ul>
                     </div>
                     <Link className="">
@@ -57,10 +62,11 @@ const Navabar = () => {
                     </Link>
                 </div>
                 <div className="navbar-center hidden md:flex ">
-                    <ul className="menu menu-horizontal px-1 flex items-center">
+                    <ul className="menu menu-horizontal px-1 flex items-center relative">
                         <NavLink to="/"><li className="pr-6  hover:font-bold">Home</li></NavLink>
                         <NavLink to="/membership"><li className="pr-6 hover:font-bold">Membership</li></NavLink>
                         <NavLink to="/notification"><img className="h-8 w-8" src={notification} alt="" /></NavLink>
+                        <p className="bg-blue-600 px-2 rounded-lg text-white absolute -right-2 bottom-5">{announcement?.length}</p>
                     </ul>
                 </div>
                 <div className="navbar-end pr-4 md:pr-0">

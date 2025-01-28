@@ -5,9 +5,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authentication/AuthProvider';
 import { toast } from 'react-toastify';
-import useAxiospublic from '../../Hooks/useAxiosPublic';
+import useAxiosSecure from '../../Hooks/useAxiosSecure';
+import Swal from 'sweetalert2';
 const JoinUs = () => {
-    const axiosPublic = useAxiospublic();
+    const axiosSecure = useAxiosSecure();
+    const from = location.state?.from?.pathname || "/";
     const { loginWithGoogle, loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
@@ -15,10 +17,16 @@ const JoinUs = () => {
         // console.log(data);
         loginUser(data.email, data.password)
             .then(result => {
-                console.log(result);
-                toast.success("Login successful");
+                navigate(from, { replace: true })
+                console.log(result.user);
 
-
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Login Successful",
+                    showConfirmButton: false,
+                    timer: 2000
+                });
             })
             .catch(error => {
                 console.log(error);
@@ -33,7 +41,7 @@ const JoinUs = () => {
                     email: result.user?.email,
                     name: result.user?.displayName
                 }
-                axiosPublic.post("/users", userInfo)
+                axiosSecure.post("/users", userInfo)
                     .then(res => {
                         console.log(res.data);
                     })

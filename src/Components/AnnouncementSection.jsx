@@ -1,17 +1,10 @@
 import { useEffect, useState } from "react";
-import useAxiospublic from "../Hooks/useAxiosPublic";
+import useAxiosSecure from "../Hooks/useAxiosSecure";
+import useAnnouncement from "../Hooks/useAnnouncement";
 
 
 const AnnouncementSection = () => {
-    const axiosPublic = useAxiospublic();
-    const [announcement, setAnnouncement] = useState([]);
-    useEffect(() => {
-        axiosPublic.get("/announcement")
-            .then(res => {
-                console.log(res.data);
-                setAnnouncement(res.data)
-            })
-    }, []);
+    const [announcement] = useAnnouncement();
     if (announcement.length > 0) {
         return <div className="w-11/12 mx-auto ">
             <h2 className="md:text-3xl font font-semibold text-lg text-center pb-6">Announcement</h2>

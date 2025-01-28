@@ -1,15 +1,16 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../Authentication/useAuth";
-import useAxiospublic from "../Hooks/useAxiosPublic";
+
+import useAxiosSecure from "../Hooks/useAxiosSecure";
 
 
 const MakeAnnouncement = () => {
-    const axiosPublic = useAxiospublic();
+    const axiosSecure = useAxiosSecure();
     const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         // console.log(data);
-        axiosPublic.post("/announcement", data)
+        axiosSecure.post("/announcement", data)
         .then(res => {
             console.log(res.data);
             reset()

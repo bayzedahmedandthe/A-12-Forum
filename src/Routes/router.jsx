@@ -18,6 +18,8 @@ import AdminProfiles from "../Components/AdminProfiles";
 import ManageUsers from "../Components/ManageUsers";
 import ReportedComments from "../Components/ReportedComments";
 import MakeAnnouncement from "../Components/MakeAnnouncement";
+import AdminRoute from "./AdminRoute";
+import Payment from "../Components/Payment";
 
 
 const router = createBrowserRouter([
@@ -32,7 +34,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/membership",
-        element: <Membership></Membership>
+        element: <Payment></Payment>
       },
       {
         path: "/notification",
@@ -48,9 +50,9 @@ const router = createBrowserRouter([
       },
       {
         path: "/postDetails/:id",
-        element: <PostDetails></PostDetails>,
-        loader: ({params}) => fetch(`http://localhost:5000/allPosts-details/${params.id}`)
-        
+        element: <PrivetRoute><PostDetails></PostDetails></PrivetRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/allPosts-details/${params.id}`)
+
       }
     ]
   },
@@ -76,7 +78,7 @@ const router = createBrowserRouter([
       },
       {
         path: "manageUsers",
-        element: <ManageUsers></ManageUsers>,
+        element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
       },
       {
         path: "reportedComments",
