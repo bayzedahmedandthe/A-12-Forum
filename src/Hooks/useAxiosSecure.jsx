@@ -4,7 +4,7 @@ import useAuth from "../Authentication/useAuth";
 
 
 const axiosSecure = axios.create({
-    baseURL: "http://localhost:5000"
+    baseURL: "https://assaignment-12-server-delta.vercel.app"
 })
 const useAxiosSecure = () => {
     const {logOutUser} = useAuth();

@@ -6,7 +6,7 @@ const Banner = () => {
     const [search, setSearch] = useState("");
     const [post, setPost] = useState([]);
     useEffect(() => {
-        axiosPublic.get(`http://localhost:5000/allPosts?searchparams=${search}`)
+        axiosPublic.get(`https://assaignment-12-server-delta.vercel.app/allPosts?searchparams=${search}`)
         .then(res => {
             setPost(res.data)
         })

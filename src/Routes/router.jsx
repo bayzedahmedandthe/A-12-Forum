@@ -36,7 +36,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/membership",
-        element: <Payment></Payment>
+        element: <PrivetRoute><Payment></Payment></PrivetRoute>
       },
       {
         path: "/joinus",
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
       {
         path: "/postDetails/:id",
         element: <PrivetRoute><PostDetails></PostDetails></PrivetRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/allPosts-details/${params.id}`)
+        loader: ({ params }) => fetch(`https://assaignment-12-server-delta.vercel.app/allPosts-details/${params.id}`)
 
       },
       {
