@@ -51,7 +51,7 @@ const Navabar = () => {
                             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                             <NavLink to="/"><li className="pr-6  hover:font-bold">Home</li></NavLink>
                             <NavLink to="/membership"><li className="pr-6  hover:font-bold">Membership</li></NavLink>
-                            <NavLink to="/notification"><img className="h-8 w-8" src={notification} alt="" /></NavLink>
+                            <NavLink ><img className="h-8 w-8" src={notification} alt="" /></NavLink>
                             <NavLink to="/joinus"> <li className=" hover:font-bold">Join Us</li></NavLink>
                             <p className="bg-blue-600 px-2 rounded-lg text-white right-2">{announcement?.length}</p>
                         </ul>
@@ -65,7 +65,7 @@ const Navabar = () => {
                     <ul className="menu menu-horizontal px-1 flex items-center relative">
                         <NavLink to="/"><li className="pr-6  hover:font-bold">Home</li></NavLink>
                         <NavLink to="/membership"><li className="pr-6 hover:font-bold">Membership</li></NavLink>
-                        <NavLink to="/notification"><img className="h-8 w-8" src={notification} alt="" /></NavLink>
+                        <NavLink ><img className="h-8 w-8" src={notification} alt="" /></NavLink>
                         <p className="bg-blue-600 px-2 rounded-lg text-white absolute -right-2 bottom-5">{announcement?.length}</p>
                     </ul>
                 </div>

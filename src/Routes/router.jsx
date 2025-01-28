@@ -20,6 +20,8 @@ import ReportedComments from "../Components/ReportedComments";
 import MakeAnnouncement from "../Components/MakeAnnouncement";
 import AdminRoute from "./AdminRoute";
 import Payment from "../Components/Payment";
+import CommentPage from "../Components/CommentPage";
+import ViewComments from "../Components/ViewComments";
 
 
 const router = createBrowserRouter([
@@ -37,10 +39,6 @@ const router = createBrowserRouter([
         element: <Payment></Payment>
       },
       {
-        path: "/notification",
-        element: <Notification></Notification>
-      },
-      {
         path: "/joinus",
         element: <JoinUs></JoinUs>
       },
@@ -53,6 +51,14 @@ const router = createBrowserRouter([
         element: <PrivetRoute><PostDetails></PostDetails></PrivetRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/allPosts-details/${params.id}`)
 
+      },
+      {
+        path: "/comment/:id", 
+        element: <CommentPage></CommentPage>,
+      },
+      {
+        path: "/viewComments/:id",
+        element: <ViewComments></ViewComments>
       }
     ]
   },

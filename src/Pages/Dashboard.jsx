@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import useAdmin from "../Hooks/useAdmin";
+import { Helmet } from "react-helmet-async";
 
 
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     return (
         <div className="flex gap-4 md:gap-12 flex-1">
+             <Helmet>
+                <title>Dashboard</title>
+            </Helmet>
             <div className="shadow-xl min-h-screen bg-slate-100 w-[280px]">
 
                 {

@@ -3,26 +3,38 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Authentication/useAuth";
 import moment from "moment";
 import useAxiospublic from "../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const AddPost = () => {
     const axiosPublic = useAxiospublic();
-    const {user} = useAuth();
+    const { user } = useAuth();
     const { register, handleSubmit, reset } = useForm();
     const onSubmit = data => {
         console.log(data);
         const upVote = 0;
         const downVote = 0;
         const postDate = moment().format("MMM Do YY");
-        const updateData = {...data, upVote, downVote, postDate}
+        const updateData = { ...data, upVote, downVote, postDate }
         axiosPublic.post("/allPosts", updateData)
-        .then(res => {
-            console.log(res.data);
-            reset();
-        });
+            .then(res => {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: "Post added successful",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                // console.log(res.data);
+                reset();
+            });
     }
     return (
         <div className='py-12 lg:w-6/12 mx-auto md:w-8/12 w-9/12'>
+             <Helmet>
+                <title>Add Posts</title>
+            </Helmet>
             <h2 className="md:text-3xl font-semibold text-xl text-center py-6">Add a post</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label className="form-control w-full ">

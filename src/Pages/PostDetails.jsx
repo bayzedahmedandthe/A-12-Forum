@@ -1,6 +1,7 @@
+import { Helmet } from "react-helmet-async";
 import { BiCommentDetail, BiDislike, BiLike } from "react-icons/bi";
 import { RiShareForwardLine } from "react-icons/ri";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 
 const PostDetails = () => {
     const postData = useLoaderData();
@@ -8,6 +9,9 @@ const PostDetails = () => {
     const { _id, authorName, authorImage, authorEmail, postTitle, tag, postDescription, upVote, downVote, postDate } = postData;
     return (
         <div className="lg:w-6/12 mx-auto pt-8  ">
+             <Helmet>
+                <title>Post Details</title>
+            </Helmet>
             <div className="shadow-xl md:p-8">
                 <div className="flex items-center gap-2">
                     <img className="md:h-12 md:w-12 h-10 w-10 rounded-full" src={authorImage} alt="" />
@@ -18,7 +22,9 @@ const PostDetails = () => {
                 <h3 className="md:text-2xl text-xl font-semibold">{postTitle}</h3>
                 <p>{postDescription}</p>
                 <div className="flex items-center  md:gap-1 pt-4 font-semibold">
-                    <p className=" btn bg-white border-white hover:bg-white hover:border-white md:text-2xl hover:text-blue-500"> <BiCommentDetail /> </p>
+                    <Link to={`/comment/${_id}`}>
+                        <p className=" btn bg-white border-white hover:bg-white hover:border-white md:text-2xl hover:text-blue-500"> <BiCommentDetail /> </p>
+                    </Link>
                     <p className="btn bg-white border-white hover:bg-white hover:border-white md:text-2xl hover:text-blue-500"> <BiLike /> </p>
                     <p className=" btn bg-white border-white hover:bg-white hover:border-white md:text-2xl hover:text-blue-500"> <BiDislike /> </p>
                     <p className=" btn bg-white border-white hover:bg-white hover:border-white md:text-2xl hover:text-blue-500"> <RiShareForwardLine /> </p>

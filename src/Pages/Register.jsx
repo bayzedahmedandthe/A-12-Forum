@@ -4,7 +4,9 @@ import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../Authentication/AuthProvider";
 import { toast } from "react-toastify";
-import useAxiospublic from "../Hooks/useAxiosPublic";
+import useAxiospublic from "../Hooks/useAxiospublic";
+import { Helmet } from "react-helmet-async";
+
 
 
 const Register = () => {
@@ -32,7 +34,9 @@ const Register = () => {
 
                         const userInfo = {
                             email: result.user?.email,
-                            name: result.user?.displayName
+                            name: result.user?.displayName,
+                            photo: result.user?.photoURL,
+                            badge: "https://i.ibb.co/D79WFJF/58048.jpg"
                         }
                         axiosPublic.post("/users", userInfo)
                             .then(res => {
@@ -48,6 +52,9 @@ const Register = () => {
     }
     return (
         <div className='py-12 lg:w-4/12 mx-auto md:w-6/12 w-9/12'>
+            <Helmet>
+                <title>Sign Up</title>
+            </Helmet>
             <div className='py-4'>
                 <img className='w-12 h-12 my-4' src={logo} alt="" />
                 <h3 className='text-2xl font-semibold py-2'> Join the Community</h3>

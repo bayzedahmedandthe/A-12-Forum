@@ -6,6 +6,8 @@ import { RiDeleteBin6Line } from "react-icons/ri";
 import Swal from "sweetalert2";
 import usePosts from "../Hooks/usePosts";
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 
 const MyPosts = () => {
@@ -31,7 +33,7 @@ const MyPosts = () => {
             confirmButtonText: "Yes, delete it!"
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosPublic.delete(`/allPosts/${post._id}`)
+                axiosSecure.delete(`/allPosts/${post._id}`)
                     .then(res => {
                         console.log(res.data);
                         if (res.data.deletedCount > 0) {
@@ -48,6 +50,9 @@ const MyPosts = () => {
     }
     return (
         <div className="w-10/12 mx-auto ">
+             <Helmet>
+                <title>My Posts</title>
+            </Helmet>
             <h2 className="md:text-3xl text-2xl font-semibold py-8">My Posts</h2>
             <div className="overflow-x-auto">
                 <div className="overflow-x-auto">
@@ -78,7 +83,9 @@ const MyPosts = () => {
                                         </td>
                                         <td className="text-xl lg:px-12">{post.downVote}</td>
                                         <th>
-                                            <button className="btn btn-ghost text-lg lg:px-12"><MdOutlineInsertComment /></button>
+                                            <Link to={`/viewComments/${post._id}`}>
+                                                <button className="btn btn-ghost text-lg lg:px-12"><MdOutlineInsertComment /></button>
+                                            </Link>
                                         </th>
                                         <th>
                                             <button onClick={() => handleDelete(post)} className="btn btn-ghost text-xl lg:px-12 text-red-500"><RiDeleteBin6Line /> </button>

@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../Authentication/useAuth";
 
 import useAxiosSecure from "../Hooks/useAxiosSecure";
+import { Helmet } from "react-helmet-async";
 
 
 const MakeAnnouncement = () => {
@@ -18,6 +19,9 @@ const MakeAnnouncement = () => {
     }
     return (
         <div className='py-12 lg:w-6/12 mx-auto md:w-8/12 w-9/12'>
+             <Helmet>
+                <title>Make announcement</title>
+            </Helmet>
             <h2 className="md:text-3xl font-semibold text-xl text-center py-6">Make Announcement</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <label className="form-control w-full ">

@@ -5,11 +5,11 @@ import { FcGoogle } from 'react-icons/fc';
 import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Authentication/AuthProvider';
 import { toast } from 'react-toastify';
-import useAxiosSecure from '../../Hooks/useAxiosSecure';
 import Swal from 'sweetalert2';
+import useAxiospublic from '../../Hooks/useAxiospublic';
+import { Helmet } from 'react-helmet-async';
 const JoinUs = () => {
-    const axiosSecure = useAxiosSecure();
-    const from = location.state?.from?.pathname || "/";
+    const axiosPublic = useAxiospublic();
     const { loginWithGoogle, loginUser } = useContext(AuthContext);
     const { register, handleSubmit } = useForm();
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ const JoinUs = () => {
         // console.log(data);
         loginUser(data.email, data.password)
             .then(result => {
-                navigate(from, { replace: true })
+                navigate("/")
                 console.log(result.user);
 
                 Swal.fire({
@@ -36,12 +36,15 @@ const JoinUs = () => {
     const handleLoginWithGoogle = () => {
         loginWithGoogle()
             .then(result => {
+            navigate("/")
                 console.log(result.user);
+                toast.success("Login successful")
                 const userInfo = {
                     email: result.user?.email,
-                    name: result.user?.displayName
+                    name: result.user?.displayName,
+                    photo: result.user?.photoURL
                 }
-                axiosSecure.post("/users", userInfo)
+                axiosPublic.post("/users", userInfo)
                     .then(res => {
                         console.log(res.data);
                     })
@@ -51,6 +54,9 @@ const JoinUs = () => {
     }
     return (
         <div>
+            <Helmet>
+                <title>Join Us</title>
+            </Helmet>
             <div className='py-12 lg:w-4/12 mx-auto md:w-6/12 w-9/12'>
                 <div className='py-4'>
                     <img className='w-12 h-12 my-4' src={logo} alt="" />
