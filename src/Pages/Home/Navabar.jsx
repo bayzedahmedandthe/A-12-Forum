@@ -75,7 +75,7 @@ const Navabar = () => {
                             user ?
                                 <button onClick={() => setOpen(!open)}>
                                     <img className="h-12 w-12 rounded-full" src={user?.photoURL} alt="" />
-                                    <div className={`animate__animated animate__zoomIn flex flex-col shadow-xl duration-1000 text-black absolute top-24 right-2 ${open ? "" : "hidden"}`}>
+                                    <div className={`animate__animated animate__zoomIn flex flex-col shadow-xl duration-1000 bg-[#0b0c20] text-white absolute top-24 right-2 ${open ? "" : "hidden"}`}>
                                         <p className="px-8 py-3 text-lg font-semibold">{user && user?.displayName}</p>
                                         {
                                             isAdmin ?
