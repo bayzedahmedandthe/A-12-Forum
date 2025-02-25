@@ -19,4 +19,3 @@ const useAdmin = () => {
 };
 
 export default useAdmin;
-// admin is here now
