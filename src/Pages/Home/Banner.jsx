@@ -12,8 +12,8 @@ const Banner = () => {
             })
     }, [search]);
     return (
-        <div className="bg-[#303156] text-white h-screen md:flex md:justify-center">
-            <div className="md:flex md:items-center  w-11/12 mx-auto md:pt-8 pt-2 ">
+        <div className="bg-[#303156] text-white h-screen md:flex justify-center">
+            <div className="md:flex md:items-center  w-11/12 mx-auto md:pt-8 pt-24 ">
                 <div className="flex-1">
                     <h2 className="lg:text-5xl md:text-3xl text-2xl py-4 font-semibold ">Elevate Your Mindset</h2>
                     <p className="text-gray-100">Shift your thinking, transform your life. InspireSphere offers practical wisdom, motivational content, and actionable strategies to help you elevate your mindset and achieve your dreams</p>

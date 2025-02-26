@@ -32,8 +32,8 @@ const Navabar = () => {
             <div className="md:w-11/12 md:mx-auto ">
                 <div className="navbar text-white">
                     <div className="navbar-start">
-                        <div className="dropdown">
-                            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden">
+                        <div className="dropdown ">
+                            <div tabIndex={0} role="button" className="btn btn-ghost md:hidden ">
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     className="h-5 w-5"
@@ -49,12 +49,12 @@ const Navabar = () => {
                             </div>
                             <ul
                                 tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                                className=" bg-[#0b0c20] text-white menu menu-sm dropdown-content rounded-box z-[1] mt-3 w-52 p-2 shadow">
                                 <NavLink to="/"><li className="pr-6  hover:font-bold">Home</li></NavLink>
                                 <NavLink to="/membership"><li className="pr-6  hover:font-bold">Membership</li></NavLink>
                                 <NavLink ><img className="h-8 w-8" src={notification} alt="" /></NavLink>
                                 <NavLink to="/joinus"> <li className=" hover:font-bold">Join Us</li></NavLink>
-                                <p className="bg-blue-600 px-2 rounded-lg text-white right-2">{announcement?.length}</p>
+                                <p className="bg-blue-600 px-2 rounded-lg text-white absolute left-6 bottom-10 ">{announcement?.length}</p>
                             </ul>
                         </div>
                         <Link className="">

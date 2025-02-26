@@ -3,7 +3,7 @@
 
 const TagsSection = () => {
     return (
-        <div className="md:w-4/6 mx-auto py-12">
+        <div className="md:w-4/6 mx-auto py-12 w-11/12 ">
             <h2 className="md:text-4xl text-2xl py-8 font-semibold text-center">Tags</h2>
             <div className="grid md:grid-cols-4 grid-cols-3 gap-12 py-12 text-gray-500">
                 <p className="font-semibold">Character building</p>

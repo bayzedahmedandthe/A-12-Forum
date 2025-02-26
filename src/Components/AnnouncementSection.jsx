@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
-import useAxiosSecure from "../Hooks/useAxiosSecure";
+// import { useEffect, useState } from "react";
+// import useAxiosSecure from "../Hooks/useAxiosSecure";
 import useAnnouncement from "../Hooks/useAnnouncement";
+import Aos from "aos"
+import 'aos/dist/aos.css';
 
 
 const AnnouncementSection = () => {
@@ -11,7 +13,7 @@ const AnnouncementSection = () => {
             <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-4">
                 {
                     announcement?.map(announce =>
-                        <div key={announce._id} className="bg-gray-100 rounded-lg p-6">
+                        <div key={announce._id} data-aos="fade-up" data-aos-duration="2000" className="bg-gray-100 rounded-lg p-6">
                             <div className="flex items-center gap-2">
                                 <img className="md:h-12 md:w-12 h-10 w-10 rounded-full" src={announce.authorImage} alt="" />
                                 <h3 className="md:text-xl text-lg font-semibold">{announce.authorName}</h3>

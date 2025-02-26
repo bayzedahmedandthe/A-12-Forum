@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useAxiospublic from "../Hooks/useAxiosPublic";
-
+import Aos from "aos"
+import 'aos/dist/aos'
 
 const AllPosts = () => {
     const axiosPublic = useAxiospublic();
@@ -20,7 +21,7 @@ const AllPosts = () => {
                 {
                     allPosts?.map(post =>
                         <Link to={`/postDetails/${post._id}`}>
-                            <div className="shadow-xl md:p-8" key={post._id}>
+                            <div data-aos="fade-up" data-aos-duration="2000" className="shadow-xl md:p-8" key={post._id}>
                                 <div className="flex items-center gap-2">
                                     <img className="md:h-12 md:w-12 h-10 w-10 rounded-full" src={post.authorImage} alt="" />
                                     <h3 className="md:text-xl text-lg font-semibold">{post.postTitle}</h3>
