@@ -15,13 +15,13 @@ const AllPosts = () => {
     }, []);
 
     return (
-        <div className="lg:w-11/12 md:w-4/6 mx-auto ">
+        <div className="w-11/12  mx-auto ">
             <h2 className="md:text-3xl text-xl font-semibold pt-16 pb-8">See Posts</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                     allPosts?.map(post =>
                         <Link to={`/postDetails/${post._id}`}>
-                            <div data-aos="fade-up" data-aos-duration="2000" className="shadow-xl md:p-8" key={post._id}>
+                            <div data-aos="fade-up" data-aos-duration="2000" className="shadow-xl p-8" key={post._id}>
                                 <div className="flex items-center gap-2">
                                     <img className="md:h-12 md:w-12 h-10 w-10 rounded-full" src={post.authorImage} alt="" />
                                     <h3 className="md:text-xl text-lg font-semibold">{post.postTitle}</h3>

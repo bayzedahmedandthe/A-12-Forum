@@ -8,7 +8,7 @@ const PostDetails = () => {
     console.log(postData);
     const { _id, authorName, authorImage, authorEmail, postTitle, tag, postDescription, upVote, downVote, postDate } = postData;
     return (
-        <div className="lg:w-6/12 mx-auto pt-8  ">
+        <div className="lg:w-6/12 w-11/12 mx-auto pt-24 h-screen  ">
              <Helmet>
                 <title>Post Details</title>
             </Helmet>

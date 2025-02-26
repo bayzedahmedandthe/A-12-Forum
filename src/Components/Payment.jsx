@@ -8,7 +8,7 @@ import { Helmet } from 'react-helmet-async';
 const stripePromise = loadStripe(import.meta.env.VITE_Payment_Gateway_PK);
 const Payment = () => {
     return (
-        <div className='md:w-3/5 mx-auto w-4/5'>
+        <div className='md:w-3/5 mx-auto w-4/5 h-screen pt-32'>
              <Helmet>
                 <title>MemberShip</title>
             </Helmet>

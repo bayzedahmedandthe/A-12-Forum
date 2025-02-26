@@ -10,7 +10,7 @@ const AnnouncementSection = () => {
     if (announcement.length > 0) {
         return <div className="w-11/12 mx-auto ">
             <h2 className="md:text-3xl font font-semibold text-lg text-center pb-6">Announcement</h2>
-            <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 grid-cols-1 gap-4">
                 {
                     announcement?.map(announce =>
                         <div key={announce._id} data-aos="fade-up" data-aos-duration="2000" className="bg-gray-100 rounded-lg p-6">

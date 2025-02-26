@@ -32,11 +32,11 @@ const CommentPage = () => {
 
 
     return (
-        <div className="w-10/12 mx-auto">
+        <div className="w-10/12 mx-auto h-screen">
              <Helmet>
                 <title>Add Comment</title>
             </Helmet>
-            <h2 className="md:text-2xl text-xl font-semibold text-center py-8">Write a comment</h2>
+            <h2 className="md:text-2xl text-xl font-semibold  pt-28 pb-8">Write a comment</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <textarea
                     {...register("comment", { required: true })}
