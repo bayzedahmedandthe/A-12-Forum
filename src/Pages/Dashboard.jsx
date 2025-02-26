@@ -7,11 +7,11 @@ import { Helmet } from "react-helmet-async";
 const Dashboard = () => {
     const [isAdmin] = useAdmin();
     return (
-        <div className="flex gap-4 md:gap-12 flex-1">
+        <div className="md:flex md:gap-12 flex-1">
              <Helmet>
                 <title>Dashboard</title>
             </Helmet>
-            <div className="shadow-xl min-h-screen bg-slate-100 w-[280px]">
+            <div className="shadow-xl w-11/12 mx-auto md:min-h-screen bg-slate-100 md:w-[280px]">
 
                 {
                     isAdmin ?

@@ -23,10 +23,10 @@ const AdminProfiles = () => {
              <Helmet>
                 <title>Admin Profiles</title>
             </Helmet>
-            <div className="grid gap-2 grid-cols-2">
+            <div className="grid gap-2 md:grid-cols-2">
                 {
                     admin?.map(adm =>
-                        <div className="flex items-center gap-4 shadow-lg rounded-lg border p-4 mt-20">
+                        <div className="flex items-center gap-4 shadow-lg rounded-lg border p-4 md:mt-20 mt-8">
                             <img className="md:h-12 md:w-12 h-10 w-10 rounded-full" src={adm.photo} alt="" />
                             {console.log(adm?.photo)}
                             <div>
